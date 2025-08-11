@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Obligatorio</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="datosUsuario"></div>
+    <div id="login" class="seccion mostrar">
+      <h3 class="titulo">Iniciar Sesión</h3>
+      <label for="txtNomUsu">Nombre de usuario: </label
+      ><input type="text" id="txtNomUsu" placeholder="Usuario" /> <br />
+      <label for="txtCont">Contraseña: </label
+      ><input type="password" id="txtCont" placeholder="Contraseña" />
+      <br /><br />
+      <button id="btnLogin" onclick="login()">Iniciar Sesión</button>
+      <div id="mensaje"></div>
+    </div>
+
+    <div id="seccion-admin" class="seccion">
+      <h3 class="titulo">Administración</h3>
+
+      <button id="btnAltaDictado">Alta de Dictado</button>
+      <button id="btnListarDictados">Listado de Dictados</button>
+      <button id="btnAsignarAlumno">Asignar Alumno a Dictado</button>
+
+      <div id="alta-dictado" class="seccion">
+        <h4 class="titulo-alta-dictado">Alta de Dictado</h4>
+        <label for="curso">Curso:</label>
+        <select name="curso" id="cursoAltDic">
+          <option value="">Seleccione un curso</option></select
+        ><br /><br />
+        <label for="docente">Docente:</label>
+        <select id="selDocAltDic">
+          <option value="">Seleccione un docente</option></select
+        ><br /><br />
+        <label for="fecha-inicio">Fecha de Inicio:</label>
+        <input type="date" id="imFechaIniAltaDic" /> <br /><br />
+        <label for="fecha-fin">Fecha de Fin:</label>
+        <input type="date" id="imFechaFinAltaDic" /> <br /><br />
+        <label for="fecha-fin-real">Fecha de Fin Real:</label>
+        <input type="date" id="imFechaFinRealAltaDic" /> <br /><br />
+        <button onclick="agregarDictado()">Agregar Dictado</button>
+      </div>
+
+      <div id="divModificarDictado" class="seccion">
+        <h4 class="titulo-modificar-dictado">Modificar Dictado</h4>
+        <form id="frmModificarDictado">
+          <label for="dictado">Dictado:</label>
+          <select name="curso" id="selModDic">
+            <option value="">Seleccione un Dictado</option></select
+          ><br /><br />
+          <label for="curso">Curso:</label>
+          <select name="curso" id="SelcursoModDic">
+            <option value="">Seleccione un curso</option></select
+          ><br /><br />
+          <label for="docente">Docente:</label>
+          <select id="selDocModDic">
+            <option value="">Seleccione un docente</option></select
+          ><br /><br />
+          <label for="fecha-inicio">Fecha de Inicio:</label>
+          <input type="date" id="inFechaIniModDic" /> <br /><br />
+          <label for="fecha-fin">Fecha de Fin:</label>
+          <input type="date" id="inFechaFinModDic" /> <br /><br />
+          <label for="fecha-fin-real">Fecha de Fin Real:</label>
+          <input type="date" id="inFechaFinRealModDic" /> <br /><br />
+          <button id="btnModificarDictado">Modificar Dictado</button>
+        </form>
+      </div>
+
+
+      <div id="listar-dictados" class="seccion">
+        <h4>Listado de Dictados</h4>
+        <div id="tabla-listado-dictados"></div>
+      </div>
+
+      <div id="asignar-alumno" class="seccion">
+        <h4 class="titulo-asignar-alumno">Asignar Alumno</h4>
+        <label for="dictado">Dictado:</label>
+        <select name="dictado" id="dictadoAsigAlu">
+          <option value="">Seleccione un dictado</option></select
+        ><br /><br />
+        <label for="alumno">Alumno:</label>
+        <select id="selAluAsigAlu">
+          <option value="">Seleccione un alumno</option></select
+        ><br /><br />
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fechaAsigAlu" />
+        <br /><br />
+        <button onclick="agregarAlumno()">Asignar Alumno</button>
+      </div>
+    </div>
+    <!-- Parte del docente -->
+
+    <div id="seccion-docente" class="seccion">
+      <h3 class="titulo">Panel Docente</h3>
+      
+      <button id="btnRegistrarClase">Registrar Clase</button>
+      <button id="btnListarClases" onclick="mostrarSeccionListadoClases()">Listado de Clases</button>
+
+<!-- ///////////////////////  Seccion de Registro de Clases /////////////////////// -->
+      <div id="registrar-clase" class="seccion">
+      <h4>Registrar Clase</h4>
+      
+      <label for="dictado">Dictado:</label>
+      <select id="selDictadoDocente">
+        <option value="">Seleccione un dictado</option>
+      </select><br><br>
+      
+      <label for="fechaClase">Fecha:</label>
+      <input type="date" id="fechaClase">
+      <br /><br />
+      
+      <label for="detalle">Detalle</label>
+      <input type="textArea" id="detalleRegClase"></input>
+      <br /><br />
+
+      <table border="1">
+        <thead>
+          <tr>
+            <th>Alumno</th>
+            <th>Asistencia</th>
+          </tr>
+        </thead>
+        <tbody id="tablaAsistencia">
+          </tbody> 
+      </table><br><br>
+      
+      <button onclick="registrarClase()">Registrar</button>
+    </div>
+<!-- ////////////////////////////////////////////////// Listado de Clases //////////////////////////////////////// -->
+      <div id="clases-listadas" class="seccion">
+        <h4>Listado de Clases</h4>
+        <div id="tabla-listado-clases"></div>
+      </div>
+
+      <div id="detalleDeClase" class="seccion">
+        <h4>Detalle de Clase</h4>
+        <p id="detalleFechaClase"></p>
+        <p id="detalleComentarioClase"></p>
+        <p id="detalleAsistenciaClase"></p>
+        <button onclick="volverAlListado()">Volver al Listado</button>
+      </div>
+
+    </div>
+
+    <script src="datos/precargas.js"></script>
+    <script src="funciones.js"></script>
+  </body>
+</html>
